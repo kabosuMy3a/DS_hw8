@@ -33,24 +33,33 @@ int main() {
 
 		key = trim(temp1);
 		value = trim(temp2);
-
+		//cout <<key << "| " << value;
 		bstTree->insert(key,value);
-
+		
+		bstTree->inOrderPrint();
 
 	}
 
 	string file_line;
 	while(!infile.eof()){
 
-		
+		char temp = '\0' ;	
+		infile >> file_line;
 
-		infile >> file_line;	
+		temp = file_line.at(file_line.size()-1);
+		bool flag = false ;
+		if (temp ==',' || temp=='!' || temp=='?' || temp=='.'){
+			flag = true;
+			file_line = file_line.substr(0,file_line.size()-1);
+		}
 			
 		string target = bstTree->getData(file_line);
 		if (!target.empty()) file_line= target ;
+		
 
+		if (flag == true) cout << file_line << temp << " ";
+		else cout << file_line << " " ;
 
-		cout << file_line <<" " ;
 		if(infile.get() == '\n'){
 			cout << endl;
 		}

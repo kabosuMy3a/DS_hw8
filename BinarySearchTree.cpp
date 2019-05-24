@@ -76,9 +76,9 @@ bst_node * BinarySearchTree::getNodeFromKey(bst_node * node, string num){
 
 	if(node!=0x0){
 	
-		if (node->key.compare(num)==0) return node ;
+		if (node->key == num) return node ;
 
-		else if (node->key.compare(num) > 0) return getNodeFromKey(node->left_child, num) ;
+		else if (node->key > num) return getNodeFromKey(node->left_child, num) ;
 		
 		else return getNodeFromKey(node->right_child, num) ;
 
@@ -94,11 +94,11 @@ bst_node * BinarySearchTree::findParent(string num){
 
 	while (parent!=0x0){
 
-		if (parent->key.compare(num)==0){
+		if (parent->key == num){
 			return 0x0 ;
 		}	
 	
-		else if (parent->key.compare(num) > 0){
+		else if (parent->key > num ){
 
 			if(parent->left_child) parent = parent->left_child ;
 			else return parent ;
@@ -116,43 +116,7 @@ bst_node * BinarySearchTree::findParent(string num){
 	return 0x0 ;
 
 }
-/*
-bst_node * BinarySearchTree::findParent2(int num){
 
-	bst_node * parent = root ;
-
-	while (parent!=0x0){
-
-		if (parent->key == num){
-			return 0x0 ;
-		}	
-	
-		else if (parent->key > num ){
-
-	
-			if(parent->left_child){ 
-				if (parent->left_child->key == num) return parent ;
-				else parent = parent->left_child ;
-			}
-			else return parent ;
-
-		}
-
-		else{
-		
-			if(parent->right_child){
-				if (parent->right_child->key ==num) return parent ;
-				else parent= parent->right_child ;
-			}	
-			else return parent ; 
-		}
-
-	}
-
-	return 0x0 ;
-
-}
-*/
 void BinarySearchTree::insert(string key, string data){
 
 
@@ -161,7 +125,7 @@ void BinarySearchTree::insert(string key, string data){
 	
 	if(branch){
 
-		if (branch->key.compare(leaf->key) > 0 ) branch->left_child = leaf ;
+		if (branch->key > leaf->key) branch->left_child = leaf ;
 		else branch->right_child = leaf ;
 
 	}
@@ -184,108 +148,3 @@ string BinarySearchTree::getData(string key){
 	else return "" ;
 
 }
-
-/*
-void BinarySearchTree::deletion(int key){
-
-	bst_node * yellowleaf = getNodeFromKey(key) ;
-
-	if (yellowleaf==0x0){
-
-		cout << "<nonexistent value> is not in the tree" << endl ;
-		return ;
-	}
-
-	
-
-	if (yellowleaf->left_child ==0x0 && yellowleaf->right_child == 0x0) replaceNode(yellowleaf,0x0) ;
-	
-	else if (yellowleaf->left_child == 0x0) replaceNode(yellowleaf,yellowleaf->right_child);
-	else if (yellowleaf->right_child == 0x0) replaceNode(yellowleaf,yellowleaf->left_child);
-	
-	else {
-		bst_node * seed = getMinFromRightChild(yellowleaf);
-		
-		int seed_key = seed->key;
-		string seed_data = seed->data;
-		
-		replaceNode(seed,seed->right_child) ;	
-		
-		yellowleaf->key = seed_key;
-		yellowleaf->data = seed_data;
-	}
-
-	
-
-
-}
-
-
-
-void BinarySearchTree::replaceNode(bst_node * beforeNode, bst_node * afterNode){
-
-		
-	
-	bst_node * branch = findParent2(beforeNode->key);	
-
-	if (branch == 0x0){
-
-		root = afterNode ;
-	}
-
-	else{
-
-		bool isRightChild ;
-		int mp = (beforeNode->key - branch->key);
-		if (mp > 0) isRightChild = true ;
-		else isRightChild = false ;
-
-		if (isRightChild == true){
-
-			//delete branch->right_child ;//==beforeNode
-			branch->right_child = afterNode ;
-
-		}
-
-		else{
-
-			//delete branch->left_child ;//==beforNode
-			branch->left_child = afterNode; 
-		}
-
-	}
-
-}
-
-void BinarySearchTree::copyValue(bst_node * copiedNode, bst_node * copyFromNode){
-
-	copiedNode->key = copyFromNode->key ;
-	copiedNode->data = copyFromNode->data ;
-		
-}
-
-bst_node * BinarySearchTree::getMinFromRightChild(bst_node * leaf){
-
-	bst_node * seed ;
-
-	if(leaf->right_child == 0x0){
-
-		return 0x0; 
-	}
-
-	else{
-	       
-		seed = leaf->right_child ;
-		
-		while(seed->left_child != 0x0){
-			
-			seed = seed->left_child ;
-
-		}
-
-		return seed ;
-
-	}
-}
-
-*/
