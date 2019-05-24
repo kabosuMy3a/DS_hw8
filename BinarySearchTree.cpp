@@ -66,6 +66,7 @@ void BinarySearchTree::inOrderPrint(bst_node * leaf){
 	}
 }
 
+
 bst_node * BinarySearchTree::getNodeFromKey(string num){
 
 	return getNodeFromKey(root, num) ;
@@ -88,14 +89,15 @@ bst_node * BinarySearchTree::getNodeFromKey(bst_node * node, string num){
 
 }
 
+
 bst_node * BinarySearchTree::findParent(string num){
 
 	bst_node * parent = root ;
 
-	while (parent!=0x0){
+	while (parent!=NULL){
 
 		if (parent->key == num){
-			return 0x0 ;
+			return NULL ;
 		}	
 	
 		else if (parent->key > num ){
@@ -113,7 +115,7 @@ bst_node * BinarySearchTree::findParent(string num){
 
 	}
 
-	return 0x0 ;
+	return NULL ;
 
 }
 

@@ -33,12 +33,14 @@ int main() {
 
 		key = trim(temp1);
 		value = trim(temp2);
-		//cout <<key << "| " << value;
+		cout <<key << "| " << value<<endl;
 		bstTree->insert(key,value);
 		
-		bstTree->inOrderPrint();
+		//bstTree->inOrderPrint();
 
 	}
+
+	bstTree->inOrderPrint();
 
 	string file_line;
 	while(!infile.eof()){
